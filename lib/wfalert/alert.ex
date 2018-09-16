@@ -16,7 +16,7 @@ defmodule WFAlert.Alert do
       blob
       |> Map.fetch!("MissionInfo")
       |> Map.fetch!("missionReward")
-      |> parse_rewards()
+      |> Reward.parse()
 
     %Alert{id: id(blob), expires: expires, rewards: rewards}
   end
@@ -25,26 +25,6 @@ defmodule WFAlert.Alert do
 
   defp parse_time(%{"$date" => %{"$numberLong" => str}}) do
     String.to_integer(str)
-  end
-
-  defp parse_rewards(blob) do
-    Enum.map(blob, fn {key, value} -> parse_rewards(key, value) end)
-    |> List.flatten()
-  end
-
-  defp parse_rewards("credits", n) do
-    Reward.credits(n)
-  end
-
-  defp parse_rewards("items", items) do
-    Enum.map(items, fn id -> Reward.item(id) end)
-  end
-
-  defp parse_rewards("countedItems", items) do
-    Enum.map(items, fn item ->
-      count = Map.fetch!(item, "ItemCount")
-      id = Map.fetch!(item, "ItemType")
-      Reward.item(id, count)
-    end)
+    |> DateTime.from_unix!(:milliseconds)
   end
 end
