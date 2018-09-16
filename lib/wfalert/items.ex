@@ -7,12 +7,8 @@ defmodule WFAlert.Items do
   @external_resource @data_file
 
   @data_file
-  |> File.read!()
-  |> Poison.decode!()
-  |> Enum.each(fn blob ->
-    unique = Map.fetch!(blob, "uniqueName")
-    name = Map.fetch!(blob, "name")
-
+  |> WFAlert.Items.Parser.parse_file()
+  |> Enum.each(fn {unique, name} ->
     def name(unquote(unique)), do: unquote(name)
   end)
 end
