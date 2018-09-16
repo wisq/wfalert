@@ -1,7 +1,8 @@
 import WFAlert.Filter.Helpers
 
 alert_filters([
-  default(:show)
+  filter_category(:ignore, :credits),
+  default(:hide)
 ])
 
 invasion_filters([
