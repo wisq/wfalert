@@ -1,5 +1,4 @@
 defmodule WFAlert.Reward do
-  require Logger
   alias WFAlert.{Reward, Items}
 
   @enforce_keys [:id, :name, :category, :quantity]
@@ -40,7 +39,7 @@ defmodule WFAlert.Reward do
     %Reward{
       id: id,
       name: item_name(id),
-      category: category(id),
+      category: Items.category(id) || :unknown,
       quantity: quantity
     }
   end
@@ -49,22 +48,6 @@ defmodule WFAlert.Reward do
     case Items.name(id) do
       {:ok, name} -> name
       :error -> Path.basename(id)
-    end
-  end
-
-  defp category("/Lotus/Types/Recipes/Weapons/WeaponParts/" <> _), do: :weapon_part
-  defp category("/Lotus/Types/Items/Research/" <> _), do: :crafting_part
-  defp category("/Lotus/Types/Items/MiscItems/" <> _), do: :resource
-  defp category("/Lotus/StoreItems/Upgrades/Mods/FusionBundles/" <> _), do: :endo
-
-  defp category(id) do
-    cond do
-      id =~ ~r{^/Lotus/Types/Recipes/Weapons/.*Blueprint$} ->
-        :weapon_blueprint
-
-      true ->
-        Logger.error("Unknown reward: #{inspect(id)}")
-        :unknown
     end
   end
 end

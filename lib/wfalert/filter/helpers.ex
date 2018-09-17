@@ -6,10 +6,16 @@ defmodule WFAlert.Filter.Helpers do
   end
 
   def invasion_filters(list) when is_list(list) do
-    Application.put_env(:wfinvasion, :invasion_filters, list)
+    Application.put_env(:wfalert, :invasion_filters, list)
   end
 
+  @valid_actions [:show, :hide, :drop_item]
+
   def filter(action, fun) do
+    unless Enum.member?(@valid_actions, action) do
+      raise "Invalid action: #{inspect(action)}"
+    end
+
     %Filter{action: action, condition: fun}
   end
 

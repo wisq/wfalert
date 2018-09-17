@@ -1,5 +1,5 @@
 defmodule WFAlert.Alert do
-  alias WFAlert.{Alert, Reward}
+  alias WFAlert.{Alert, Reward, Filter}
 
   @enforce_keys [:id, :expires, :rewards]
   defstruct(
@@ -9,7 +9,6 @@ defmodule WFAlert.Alert do
   )
 
   def parse(blob) do
-    IO.inspect(blob)
     expires = Map.fetch!(blob, "Expiry") |> parse_time()
 
     rewards =
@@ -19,6 +18,13 @@ defmodule WFAlert.Alert do
       |> Reward.parse()
 
     %Alert{id: id(blob), expires: expires, rewards: rewards}
+  end
+
+  def match?(alert) do
+    Filter.match?(
+      Application.get_env(:wfalert, :alert_filters, []),
+      alert.rewards
+    )
   end
 
   defp id(%{"_id" => %{"$oid" => hex}}), do: hex
