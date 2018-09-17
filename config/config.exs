@@ -31,4 +31,8 @@ config :logger, :console, format: "[$level] $message\n"
 #
 #     import_config "#{Mix.env()}.exs"
 
-import_config "pushover.exs"
+try do
+  import_config "pushover.exs"
+rescue
+  Code.LoadError -> IO.puts("[warning] Can't load secrets from config/pushover.exs")
+end
