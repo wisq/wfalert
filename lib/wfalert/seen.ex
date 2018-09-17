@@ -29,6 +29,8 @@ defmodule WFAlert.Seen do
     seen_file(type)
     |> mkparent()
     |> File.write(ids)
+
+    items
   end
 
   defp mkparent(file) do

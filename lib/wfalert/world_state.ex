@@ -1,9 +1,12 @@
 defmodule WFAlert.WorldState do
+  require Logger
   alias WFAlert.{Alert, Invasion, Seen}
 
   @uri "http://content.warframe.com/dynamic/worldState.php"
 
   def fetch do
+    Logger.info("Retrieving world state ...")
+
     HTTPoison.get!(@uri)
     |> Map.fetch!(:body)
     |> Poison.decode!()
@@ -13,22 +16,7 @@ defmodule WFAlert.WorldState do
     state
     |> Map.fetch!("Alerts")
     |> Enum.map(&Alert.parse/1)
-  end
-
-  def new_alerts(state \\ fetch()) do
-    seen = Seen.alerts()
-    alerts = alerts(state)
-
-    Seen.update_alerts(alerts)
-    Enum.reject(alerts, &(&1.id in seen))
-  end
-
-  def new_invasions(state \\ fetch()) do
-    seen = Seen.invasions()
-    invs = invasions(state)
-
-    Seen.update_invasions(invs)
-    Enum.reject(invs, &(&1.id in seen))
+    |> log("alert")
   end
 
   def invasions(state \\ fetch()) do
@@ -36,5 +24,31 @@ defmodule WFAlert.WorldState do
     |> Map.fetch!("Invasions")
     |> Enum.map(&Invasion.parse/1)
     |> Enum.reject(&is_nil/1)
+    |> log("invasion")
+  end
+
+  def new_alerts(state \\ fetch()) do
+    seen = Seen.alerts()
+
+    alerts(state)
+    |> Seen.update_alerts()
+    |> Enum.reject(&(&1.id in seen))
+    |> log("unseen alert")
+  end
+
+  def new_invasions(state \\ fetch()) do
+    seen = Seen.invasions()
+
+    invasions(state)
+    |> Seen.update_invasions()
+    |> Enum.reject(&(&1.id in seen))
+    |> log("unseen invasion")
+  end
+
+  defp log(items, type) do
+    count = Enum.count(items)
+    plural = unless count == 1, do: "s"
+    Logger.info("Got #{count} #{type}#{plural}.")
+    items
   end
 end

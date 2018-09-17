@@ -1,4 +1,5 @@
 defmodule WFAlert.Notifier do
+  require Logger
   alias WFAlert.{WorldState, Alert, Invasion}
 
   def run() do
@@ -30,13 +31,14 @@ defmodule WFAlert.Notifier do
     |> Enum.join(" + ")
   end
 
-  defp notify([], []), do: :ok
+  defp notify([], []) do
+    Logger.info("No unseen alerts or invasions match our filters.")
+  end
 
   defp notify(alert_lines, invasion_lines) do
-    pushover(
-      title(alert_lines, invasion_lines),
-      alert_lines ++ invasion_lines
-    )
+    title = title(alert_lines, invasion_lines)
+    pushover(title, alert_lines ++ invasion_lines)
+    Logger.info("Alert sent: #{title}.")
   end
 
   @pushover_uri "https://api.pushover.net/1/messages.json"
@@ -59,12 +61,10 @@ defmodule WFAlert.Notifier do
       message: Enum.join(lines, "\n")
     }
     |> Poison.encode!()
-    |> IO.inspect()
     |> post_json()
   end
 
   defp post_json(body) do
     HTTPoison.post!(@pushover_uri, body, "Content-Type": "application/json")
-    |> IO.inspect()
   end
 end
