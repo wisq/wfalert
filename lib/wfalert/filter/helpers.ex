@@ -19,19 +19,35 @@ defmodule WFAlert.Filter.Helpers do
     %Filter{action: action, condition: fun}
   end
 
-  def filter_category(action, category) do
-    filter(action, fn r -> r.category == category end)
+  def by_category(action, category) do
+    filter(action, fn r -> matches(r.category, category) end)
   end
 
-  def filter_name(action, name) do
-    if Regex.regex?(name) do
-      filter(action, fn r -> r.name =~ name end)
-    else
-      filter(action, fn r -> r.name == name end)
-    end
+  def by_name(action, name) do
+    filter(action, fn r -> matches(r.name, name) end)
+  end
+
+  def by_id(action, id) do
+    filter(action, fn r -> matches(r.id, id) end)
+  end
+
+  def by_category_and_name(action, category, name) do
+    filter(action, fn r ->
+      matches(r.category, category) && matches(r.name, name)
+    end)
   end
 
   def default(action) do
     filter(action, fn _ -> true end)
+  end
+
+  defp matches(actual, expected) do
+    cond do
+      Regex.regex?(expected) -> actual =~ expected
+      is_binary(expected) -> actual == expected
+      is_atom(expected) -> actual == expected
+      is_list(expected) -> Enum.any?(expected, &matches(actual, &1))
+      true -> raise "Unknown match value: #{inspect(expected)}"
+    end
   end
 end
