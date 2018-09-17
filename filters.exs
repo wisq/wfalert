@@ -1,7 +1,7 @@
 import WFAlert.Filter.Helpers
 
 owned_helmets =
-  read_lines("owned/helmets.txt")
+  read_lines("lists/owned_helmets.txt")
   |> Enum.map(&"#{&1} Helmet Blueprint")
 
 alert_filters([
