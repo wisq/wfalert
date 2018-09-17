@@ -14,6 +14,10 @@ defmodule WFAlert.Reward do
     |> List.flatten()
   end
 
+  def describe(%Reward{category: :credits, name: name}), do: name
+  def describe(%Reward{quantity: 1, name: name}), do: name
+  def describe(%Reward{quantity: q, name: name}), do: "#{name} (#{q})"
+
   defp parse_reward("credits", amount) do
     %Reward{
       id: :credits,

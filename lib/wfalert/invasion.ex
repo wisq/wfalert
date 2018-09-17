@@ -24,5 +24,12 @@ defmodule WFAlert.Invasion do
     )
   end
 
+  def one_line(invasion) do
+    invasion.rewards
+    |> Enum.map(&Reward.describe/1)
+    |> Enum.sort()
+    |> Enum.join(" + ")
+  end
+
   defp id(%{"_id" => %{"$oid" => hex}}), do: hex
 end
