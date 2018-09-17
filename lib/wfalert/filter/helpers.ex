@@ -41,10 +41,16 @@ defmodule WFAlert.Filter.Helpers do
     filter(action, fn _ -> true end)
   end
 
+  def read_lines(file) do
+    File.stream!(file)
+    |> Enum.map(&:string.chomp/1)
+    |> Enum.reject(&String.starts_with?(&1, "#"))
+  end
+
   defp matches(actual, expected) do
     cond do
       Regex.regex?(expected) -> actual =~ expected
-      is_binary(expected) -> actual == expected
+      is_binary(expected) -> String.downcase(actual) == String.downcase(expected)
       is_atom(expected) -> actual == expected
       is_list(expected) -> Enum.any?(expected, &matches(actual, &1))
       true -> raise "Unknown match value: #{inspect(expected)}"

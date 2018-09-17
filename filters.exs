@@ -1,41 +1,7 @@
 import WFAlert.Filter.Helpers
 
 owned_helmets =
-  [
-    "Banshee Reverb",
-    "Ember Backdraft",
-    "Ember Phoenix",
-    "Excalibur Pendragon",
-    "Excalibur Umbra Sunder",
-    "Hydroid Triton",
-    "Inaros Canopic",
-    "Ivara Loxley",
-    "Ivara Zirastra",
-    "Limbo Magrite",
-    "Loki Essence",
-    "Mag Coil",
-    "Mesa Ovis",
-    "Mirage Harlequin",
-    "Nezha Jinza",
-    "Nova Device",
-    "Nova Quantum",
-    "Nova Slipstream",
-    "Nyx Vespa",
-    "Oberon Markhor",
-    "Oberon Oryx",
-    "Revenant Vania",
-    "Saryn Chlora",
-    "Saryn Hemlock",
-    "Titania Aurai",
-    "Trinity Aura",
-    "Trinity Meridian",
-    "Valkyr Bastet",
-    "Vauban Armistice",
-    "Wukong Macak",
-    # Helmets incorrectly named in the item table:
-    #   Should be "Frost Aurora".
-    "Aurora Frost"
-  ]
+  read_lines("owned/helmets.txt")
   |> Enum.map(&"#{&1} Helmet Blueprint")
 
 alert_filters([
@@ -54,6 +20,6 @@ invasion_filters([
   filter(:show, fn r -> r.name == "Mutagen Mass" && r.quantity >= 2 end),
   # Don't care much about fieldrons or detonites.
   by_category(:drop_item, :crafting_part),
-  # Show everything else (if there's un-dropped rewards left).
-  default(:show)
+  # For now, I'm hiding everything else.
+  default(:hide)
 ])
