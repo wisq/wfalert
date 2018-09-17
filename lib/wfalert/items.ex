@@ -28,7 +28,7 @@ defmodule WFAlert.Items do
       id =~ ~r{^/Lotus/Types/Recipes/Weapons/.*Blueprint$} ->
         :weapon_blueprint
 
-      id =~ ~r{^/Lotus/StoreItems/Types/Recipes/Helmets/.*HelmetBlueprint$} ->
+      id =~ ~r{^/Lotus/StoreItems/Types/Recipes/Helmets/.*Blueprint$} ->
         :helmet_blueprint
 
       id =~ ~r{^/Lotus/StoreItems/Types/Recipes/.*Blueprint$} ->
