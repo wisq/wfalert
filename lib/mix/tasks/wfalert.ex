@@ -5,7 +5,7 @@ defmodule Mix.Tasks.Wfalert do
   @shortdoc "Load a config file and issue alerts"
 
   def run([file]) do
-    {:ok, _started} = Application.ensure_all_started(:wfalert)
+    Mix.Task.run("app.start")
 
     Code.eval_file(file)
     Notifier.run()
