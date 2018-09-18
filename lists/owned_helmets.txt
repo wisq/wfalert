@@ -4,6 +4,7 @@ Ember Backdraft
 Ember Phoenix
 Excalibur Pendragon
 Excalibur Umbra Sunder
+Frost Aurora
 Hydroid Triton
 Inaros Canopic
 Ivara Loxley
@@ -31,6 +32,3 @@ Trinity Meridian
 Valkyr Bastet
 Vauban Armistice
 Wukong Macak
-# Helmets incorrectly named in the item table:
-#   Should be "Frost Aurora".
-Aurora Frost

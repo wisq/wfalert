@@ -5,8 +5,4 @@ Blaze
 Ice Storm
 Rending Strike
 Stunning Speed
-
-# This one has an incorrect space in the dict file,
-# so I'll include both versions.
 Wildfire
-Wild Fire
