@@ -44,7 +44,7 @@ defmodule WFAlert.Filter.Helpers do
   def read_lines(file) do
     File.stream!(file)
     |> Enum.map(&:string.chomp/1)
-    |> Enum.reject(&String.starts_with?(&1, "#"))
+    |> Enum.filter(&(&1 =~ ~r{^[^#]}))
   end
 
   defp matches(actual, expected) do

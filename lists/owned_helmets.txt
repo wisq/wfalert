@@ -21,6 +21,7 @@ Nova Slipstream
 Nyx Vespa
 Oberon Markhor
 Oberon Oryx
+Octavia Cadenza
 Revenant Vania
 Saryn Chlora
 Saryn Hemlock
