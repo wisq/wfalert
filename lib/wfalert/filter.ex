@@ -14,7 +14,7 @@ defmodule WFAlert.Filter do
   end
 
   # No filters, so it passes.
-  def match?([], rewards), do: true
+  def match?([], _rewards), do: true
 
   def match?(filters, rewards) do
     initial = %State{rewards: rewards}

@@ -1,10 +1,7 @@
 defmodule WFAlert.Items do
   require Logger
 
-  @data_file Path.expand(
-               "dict/item.json",
-               Mix.Project.deps_paths()[:pretty_bot]
-             )
+  @data_file Path.expand("../../../data/items.json", __ENV__.file)
 
   @external_resource @data_file
 
