@@ -1,3 +1,4 @@
+# vim: ft=config
 Ceramic Dagger
 Dark Dagger
 Dark Sword

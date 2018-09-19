@@ -8,18 +8,24 @@ owned_weapons =
   read_lines("lists/owned_weapons.txt")
   |> Enum.map(&"#{&1} Blueprint")
 
+owned_weapon_skins =
+  read_lines("lists/owned_weapon_skins.txt")
+  |> Enum.map(&"#{&1} Skin Blueprint")
+
 owned_nightmare_mods = read_lines("lists/owned_nightmare_mods.txt")
+owned_aura_mods = read_lines("lists/owned_aura_mods.txt")
 
 # Ignore certain resources in their standard quantities.
 # If they increase the amounts later, maybe I'll be interested.
 unneeded_resources = %{
-  "Rubedo" => 450,
-  "Morphic" => 1,
-  "Control Module" => 1,
   "Argon Crystal" => 1,
+  "Control Module" => 1,
+  "Morphic" => 1,
   "Plastids" => 300,
-  "Void Traces" => 20,
-  "Tellurium" => 1
+  "Polymer Bundle" => 300,
+  "Rubedo" => 450,
+  "Tellurium" => 1,
+  "Void Traces" => 20
 }
 
 alert_filters([
@@ -32,7 +38,9 @@ alert_filters([
   # Ignore items I own.
   by_category_and_name(:drop_item, :helmet_blueprint, owned_helmets),
   by_category_and_name(:drop_item, :blueprint, owned_weapons),
+  by_category_and_name(:drop_item, :blueprint, owned_weapon_skins),
   by_category_and_name(:drop_item, :mod, owned_nightmare_mods),
+  by_category_and_name(:drop_item, :aura_mod, owned_aura_mods),
   # Ignore Vauban.
   by_category_and_name(:drop_item, :warframe_blueprint, ~r{^Vauban .* [bB]lueprint}),
   # Show everything else (if there's un-dropped rewards left).

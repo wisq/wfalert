@@ -1,0 +1,20 @@
+# vim: ft=config
+Corrosive Projection
+Dead Eye
+EMP Aura
+Enemy Radar
+Energy Siphon
+Infested Impedance
+Loot Detector
+Physique
+Pistol Scavenger
+Rejuvenation
+Rifle Amp
+Rifle Scavenger
+Shield Disruption
+Shotgun Scavenger
+Sniper Scavenger
+Speed Holster
+Sprint Boost
+Steel Charge
+Toxin Resistance

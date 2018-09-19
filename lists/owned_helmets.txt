@@ -1,4 +1,5 @@
 # vim: ft=config
+Banshee Chorus
 Banshee Reverb
 Ember Backdraft
 Ember Phoenix

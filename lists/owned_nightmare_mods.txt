@@ -1,3 +1,4 @@
+# vim: ft=config
 # List: http://warframe.wikia.com/wiki/Nightmare_Mode#Mission_Rewards
 # I generally get to 3 of each mod before I add them to this list.
 
