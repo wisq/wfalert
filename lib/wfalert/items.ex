@@ -1,17 +1,20 @@
 defmodule WFAlert.Items do
   require Logger
 
-  @data_file Path.expand("../../../data/items.json", __ENV__.file)
+  @data_file Path.expand(
+               "data/languages.json",
+               Mix.Project.deps_paths()[:warframe_worldstate_data]
+             )
 
   @external_resource @data_file
 
   @data @data_file
         |> File.read!()
         |> Poison.decode!()
-        |> Map.new()
+        |> Map.new(fn {id, %{"value" => name}} -> {id, name} end)
 
-  def name(id), do: Map.fetch(@data, id)
-  def name!(id), do: Map.fetch!(@data, id)
+  def name(id), do: Map.fetch(@data, String.downcase(id))
+  def name!(id), do: Map.fetch!(@data, String.downcase(id))
 
   def category("/Lotus/Types/Recipes/Weapons/WeaponParts/" <> _), do: :weapon_part
   def category("/Lotus/Types/Items/Research/" <> _), do: :crafting_part
