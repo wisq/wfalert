@@ -18,7 +18,7 @@ defmodule Mix.Tasks.Wfalert.Alerts do
     Code.eval_file(file)
 
     WorldState.alerts()
-    |> Enum.map(&show_alert_and_match/1)
+    |> Enum.map(&show_alert/1)
     |> IO.puts()
   end
 
@@ -28,6 +28,14 @@ defmodule Mix.Tasks.Wfalert.Alerts do
 
   defp show_alert(alert) do
     [
+      show_alert_base(alert),
+      show_alert_match(alert),
+      show_alert_lifetime(alert)
+    ]
+  end
+
+  defp show_alert_base(alert) do
+    [
       "\n--- Alert: #{alert.id} ---\n",
       alert.rewards
       |> Enum.sort_by(& &1.name)
@@ -35,15 +43,20 @@ defmodule Mix.Tasks.Wfalert.Alerts do
     ]
   end
 
-  defp show_alert_and_match(alert) do
-    [
-      show_alert(alert),
-      if Alert.match?(alert) do
-        "- Matches alert filters.\n"
-      else
-        "- Does NOT match alert filters.\n"
-      end
-    ]
+  defp show_alert_match(alert) do
+    if Alert.match?(alert) do
+      "- Matches alert filters.\n"
+    else
+      "- Does NOT match alert filters.\n"
+    end
+  end
+
+  defp show_alert_lifetime(alert) do
+    cond do
+      !Alert.started?(alert) -> "- Alert has not started yet.\n"
+      !Alert.expired?(alert) -> "- Alert has expired.\n"
+      true -> ""
+    end
   end
 
   defp show_reward(reward) do
