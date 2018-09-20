@@ -30,20 +30,20 @@ If you're just looking for an easy way to monitor alerts and invasions, you're p
 ### Set up filters
 
 1. Create a config file.
-  * For my own personal config, see `filters.exs`; you can base yours on that.
-  * See [Filter logic](#filter-logic) below.
+    * For my own personal config, see `filters.exs`; you can base yours on that.
+    * See [Filter logic](#filter-logic) below.
 2. Run `mix wfalert.alerts <path to your config file>` and ensure the current alerts are filtered the way you want.
 
 ### Set up notifications
 
 1. Create a [Pushover](https://pushover.net/) account.
 2. Within Pushover, [create an application](https://pushover.net/apps/build).
-  * You can give it an icon; I recommend searching Google Images for "Warframe logo" and picking something simple, and with a transparent background.
+    * You can give it an icon; I recommend searching Google Images for "Warframe logo" and picking something simple, and with a transparent background.
 3. Copy `config/pushover.example.exs` to `config/pushover.exs` and fill in your Pushover keys.
-  * The API token is the token for your app.
-  * The user key is your user key, from the main Pushover page after logging in.
+    * The API token is the token for your app.
+    * The user key is your user key, from the main Pushover page after logging in.
 4. Set up some sort of periodic script (e.g. `cron`, `runit`, `systemd`, etc.) to run `mix wfalert <path to your config file>` on a regular basis.
-  * You may want to do a few manual test runs first.  When you do, make sure at least one alert or invasion matches your filters.
+    * You may want to do a few manual test runs first.  When you do, make sure at least one alert or invasion matches your filters.
 
 ## Filter logic
 
