@@ -1,11 +1,15 @@
 # vim: ft=config
 Banshee Chorus
 Banshee Reverb
+Chroma Amaru
 Ember Backdraft
 Ember Phoenix
+Equinox Clisthert
+Equinox Solstice
 Excalibur Pendragon
 Excalibur Umbra Sunder
 Frost Aurora
+Gara Virago
 Hydroid Triton
 Inaros Canopic
 Ivara Loxley
@@ -20,6 +24,7 @@ Nezha Jinza
 Nova Device
 Nova Quantum
 Nova Slipstream
+Nyx Menticide
 Nyx Vespa
 Oberon Markhor
 Oberon Oryx

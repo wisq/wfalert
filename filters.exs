@@ -19,8 +19,13 @@ owned_aura_mods = read_lines("lists/owned_aura_mods.txt")
 # If they increase the amounts later, maybe I'll be interested.
 unneeded_resources = %{
   "Argon Crystal" => 1,
+  "Circuits" => 1500,
   "Control Module" => 1,
+  "Ferrite" => 3000,
+  "Gallium" => 1,
   "Morphic" => 1,
+  "Nano Spores" => 3000,
+  "Oxium" => 300,
   "Plastids" => 300,
   "Polymer Bundle" => 300,
   "Rubedo" => 450,
