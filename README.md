@@ -30,7 +30,7 @@ If you're just looking for an easy way to monitor alerts and invasions, you're p
 ### Set up filters
 
 1. Create a config file.
-    * For my own personal config, see `filters.exs`; you can base yours on that.
+    * For my own personal config, see `wisq/filters.exs`; you can base yours on that.
     * See [Filter logic](#filter-logic) below.
 2. Run `mix wfalert.alerts <path to your config file>` and ensure the current alerts are filtered the way you want.
 
@@ -80,6 +80,7 @@ There are also some helper functions included:
 * `read_lines(file)` — Read all lines from `file` and return a list.
   * You can use this to store lengthy lists (e.g. "items I own") in an external text file.
   * Blank lines, and comments (lines starting with `#`), are ignored.
+  * The filename is resolved relative to the calling file.  E.g. if `x/filters.exs` calls `read_lines("y/z.txt")`, the target file is `x/y/z.txt`.
 
 ## Example
 

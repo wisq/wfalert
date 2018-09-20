@@ -1,4 +1,4 @@
-import WFAlert.Filter.Helpers
+use WFAlert.Filter.Helpers
 
 owned_helmets =
   read_lines("lists/owned_helmets.txt")

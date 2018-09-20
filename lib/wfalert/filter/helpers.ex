@@ -1,6 +1,12 @@
 defmodule WFAlert.Filter.Helpers do
   alias WFAlert.Filter
 
+  defmacro __using__(_opts) do
+    quote do
+      import WFAlert.Filter.Helpers
+    end
+  end
+
   def alert_filters(list) when is_list(list) do
     Application.put_env(:wfalert, :alert_filters, list)
   end
@@ -41,10 +47,13 @@ defmodule WFAlert.Filter.Helpers do
     filter(action, fn _ -> true end)
   end
 
-  def read_lines(file) do
-    File.stream!(file)
-    |> Enum.map(&:string.chomp/1)
-    |> Enum.filter(&(&1 =~ ~r{^[^#]}))
+  defmacro read_lines(file) do
+    quote bind_quoted: [file: file] do
+      Path.expand(file, Path.dirname(__ENV__.file))
+      |> File.stream!()
+      |> Enum.map(&:string.chomp/1)
+      |> Enum.filter(&(&1 =~ ~r{^[^#]}))
+    end
   end
 
   defp matches(actual, expected) do
