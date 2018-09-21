@@ -51,7 +51,7 @@ Alerts and invasions are filtered separately.  For each alert or invasion, the f
 
 * `:hide` — If any reward matches this condition, the current alert/invasion **will not** trigger a notification.  Processing stops.
 * `:show` — If any reward matches this condition, the current alert/invasion **will** trigger a notification.  Processing stops.
-* `:drop_item` — If any reward maches this condition, that reward is removed.
+* `:drop_item` — If any reward matches this condition, that reward is removed.
   * Future filters will not take this reward into account when making their decisions.
   * If all rewards are dropped in this way, this triggers the `:hide` behaviour, and processing stops.
   * Note that dropped rewards *will* still show up on notifications; this only affects *filtering*, not notifying.
@@ -70,7 +70,7 @@ For `id`, `category`, and `name`, several different values can be used:
 
 * If the value is a string, it must match exactly (case insensitive).
 * If the value is a regular expression (regex), it must match.
-  * You can control paramaters like case-sensitivity via the [regex syntax](https://hexdocs.pm/elixir/Regex.html).
+  * You can control parameters like case-sensitivity via the [regex syntax](https://hexdocs.pm/elixir/Regex.html).
 * If the value is an atom (e.g. for `category`), it must match exactly.
 * If the value is a list, then each element of the list can be any of the above.
   * The value will be considered to match if the item matches **any** member of the list.
