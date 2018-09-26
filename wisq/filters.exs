@@ -18,17 +18,21 @@ owned_aura_mods = read_lines("lists/owned_aura_mods.txt")
 # Ignore certain resources in their standard quantities.
 # If they increase the amounts later, maybe I'll be interested.
 unneeded_resources = %{
+  "Alloy Plate" => 1500,
   "Argon Crystal" => 1,
   "Circuits" => 1500,
   "Control Module" => 1,
   "Ferrite" => 3000,
   "Gallium" => 1,
-  "Morphic" => 1,
+  "Morphics" => 1,
   "Nano Spores" => 3000,
+  "Neurodes" => 1,
   "Oxium" => 300,
   "Plastids" => 300,
   "Polymer Bundle" => 300,
   "Rubedo" => 450,
+  "Salvage" => 300,
+  "Synthula" => 5,
   "Tellurium" => 1,
   "Void Traces" => 20
 }
