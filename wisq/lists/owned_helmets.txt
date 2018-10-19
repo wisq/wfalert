@@ -1,16 +1,20 @@
 # vim: ft=config
+Atlas Tartarus
 Banshee Chorus
 Banshee Reverb
 Chroma Amaru
+Chroma Drac
 Ember Backdraft
 Ember Phoenix
 Equinox Clisthert
 Equinox Solstice
+Excalibur Mordred
 Excalibur Pendragon
 Excalibur Umbra Sunder
 Frost Aurora
 Frost Squall
 Gara Virago
+Hydroid Ketos
 Hydroid Triton
 Inaros Canopic
 Ivara Loxley
@@ -22,7 +26,9 @@ Mesa Ovis
 Mirage Harlequin
 Mirage Trivelin
 Nezha Jinza
+Nidus Prion
 Nova Device
+Nova Flux
 Nova Quantum
 Nova Slipstream
 Nyx Menticide
@@ -31,11 +37,17 @@ Oberon Markhor
 Oberon Oryx
 Octavia Cadenza
 Revenant Vania
+Rhino Thrak
+Rhino Vanguard
 Saryn Chlora
 Saryn Hemlock
 Titania Aurai
 Trinity Aura
 Trinity Meridian
 Valkyr Bastet
+Valkyr Kara
 Vauban Armistice
+Volt Pulse
+Wukong Dasheng
 Wukong Macak
+Zephyr Cierzo

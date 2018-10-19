@@ -27,6 +27,7 @@ unneeded_resources = %{
   "Morphics" => 1,
   "Nano Spores" => 3000,
   "Neurodes" => 1,
+  "Orokin Cell" => 1,
   "Oxium" => 300,
   "Plastids" => 300,
   "Polymer Bundle" => 300,
