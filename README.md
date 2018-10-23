@@ -12,8 +12,8 @@ If you're just looking for an easy way to monitor alerts and invasions, you're p
 
 ## Usage
 
-* `mix wfalert.alerts [config file]`
-  * Shows a list of current alerts, and whether they match or not.
+* `mix wfalert.alerts [config file]` and `mix wfalert.invasions [config file]`
+  * Shows a list of current alerts / invasions, and whether they match or not.
   * Includes extra data (like raw internal item IDs) that you can potentially use for filters.
 * `mix wfalert <config file>`
   * Checks current alerts and invasions, and sends messages for new ones.
