@@ -1,4 +1,5 @@
 # vim: ft=config
+Ash Locust
 Atlas Tartarus
 Banshee Chorus
 Banshee Reverb

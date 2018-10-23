@@ -3,6 +3,7 @@
 # I generally get to 3 of each mod before I add them to this list.
 
 Accelerated Blast
+Armored Agility
 Blaze
 Constitution
 Fortitude

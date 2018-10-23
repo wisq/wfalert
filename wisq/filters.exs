@@ -26,6 +26,7 @@ unneeded_resources = %{
   "Gallium" => 1,
   "Morphics" => 1,
   "Nano Spores" => 3000,
+  "Neural Sensors" => 1,
   "Neurodes" => 1,
   "Orokin Cell" => 1,
   "Oxium" => 300,
@@ -61,9 +62,10 @@ alert_filters([
 # You may hide an entire invasion just based on ONE of the rewards.
 invasion_filters([
   # Three runs for one mutagen mass is awful, so two is ideal.
-  filter(:show, fn r -> r.name == "Mutagen Mass" && r.quantity >= 2 end),
+  # But, I have enough of these for a while.
+  #filter(:show, fn r -> r.name == "Mutagen Mass" && r.quantity >= 2 end),
   # Don't care much about fieldrons or detonites.
   by_category(:drop_item, :crafting_part),
-  # For now, I'm hiding everything else.
-  default(:hide)
+  # Let's show everything else.
+  default(:show)
 ])
