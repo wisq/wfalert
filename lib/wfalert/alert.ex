@@ -1,5 +1,6 @@
 defmodule WFAlert.Alert do
   alias WFAlert.{Alert, Reward, Filter}
+  import WFAlert.Util, only: [parse_time: 1]
 
   @enforce_keys [:id, :expires, :rewards]
   defstruct(
@@ -49,11 +50,6 @@ defmodule WFAlert.Alert do
   end
 
   defp id(%{"_id" => %{"$oid" => hex}}), do: hex
-
-  defp parse_time(%{"$date" => %{"$numberLong" => str}}) do
-    String.to_integer(str)
-    |> DateTime.from_unix!(:milliseconds)
-  end
 
   defp time_to_expire(alert) do
     DateTime.diff(alert.expires, DateTime.utc_now())

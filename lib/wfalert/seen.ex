@@ -1,4 +1,6 @@
 defmodule WFAlert.Seen do
+  alias WFAlert.Util
+
   def alerts, do: list("alerts")
   def invasions, do: list("invasions")
 
@@ -27,16 +29,9 @@ defmodule WFAlert.Seen do
       |> Enum.map(&"#{&1.id}\n")
 
     seen_file(type)
-    |> mkparent()
+    |> Util.mkparent()
     |> File.write(ids)
 
     items
-  end
-
-  defp mkparent(file) do
-    Path.dirname(file)
-    |> File.mkdir_p!()
-
-    file
   end
 end
