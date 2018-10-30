@@ -1,15 +1,23 @@
 defmodule WFAlert.WorldState do
   require Logger
   alias WFAlert.{Alert, Invasion, Seen}
+  alias WFAlert.WorldState.Cache
 
   @uri "http://content.warframe.com/dynamic/worldState.php"
 
-  def fetch do
+  def fetch(cached \\ true)
+
+  def fetch(true) do
+    Cache.fetch() || fetch(false)
+  end
+
+  def fetch(false) do
     Logger.info("Retrieving world state ...")
 
     HTTPoison.get!(@uri)
     |> Map.fetch!(:body)
     |> Poison.decode!()
+    |> Cache.store()
   end
 
   def alerts(state \\ fetch()) do

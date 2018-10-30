@@ -25,6 +25,10 @@ If you're just looking for an easy way to monitor alerts and invasions, you're p
   * The next nightfall must be no more than `before` minutes away; or, if it has already started, there must be `remain` minutes left.
   * If `before` is `0` or `remain` is `50` or more, the respective notification will be disabled.
   * Each night will only receive (at most) one notification.  A "night begins soon" notification will prevent a "night has begun" notification.
+* `mix do <task1>, <task2>, ...`
+  * Run multiple tasks above in sequence.
+  * Will only contact the Warframe servers once.  World data is cached between tasks.
+  * Example: `mix do wfalert my_filters.exs, wfalert.nightfall.cetus 10 40`
 
 ## Installation
 
