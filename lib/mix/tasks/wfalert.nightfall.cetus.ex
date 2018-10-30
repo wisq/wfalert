@@ -26,6 +26,7 @@ defmodule Mix.Tasks.Wfalert.Nightfall.Cetus do
         end
 
       seconds_within?(now, night.begins, secs_before) ->
+        CetusCycle.mark_night_seen(night)
         notify_upcoming(night, now)
 
       true ->
