@@ -20,6 +20,11 @@ If you're just looking for an easy way to monitor alerts and invasions, you're p
   * Checks current alerts and invasions, and sends messages for new ones.
   * Uses filters from the config file to limit which items are sent.
   * Will only check each alert or invasion once, so no repeats.
+* `mix wfalert.nightfall.cetus <before> <remaining>`
+  * Send a notification when night (on Cetus) is approaching / has begun.
+  * If run before night, it must be no more than `before` minutes away.  (Use `0` to disable.)
+  * If run during night, there must be no less than `remaining` minutes left.  (Use `50` or more to disable.)
+  * Will only notify once for each night.
 
 ## Installation
 

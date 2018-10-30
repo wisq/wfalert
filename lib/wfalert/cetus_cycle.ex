@@ -1,6 +1,6 @@
 defmodule WFAlert.CetusCycle do
   require Logger
-  alias WFAlert.{WorldState, Util}
+  alias WFAlert.{WorldState, Util, Seen}
 
   defmodule Period do
     alias Timex.Duration
@@ -76,6 +76,19 @@ defmodule WFAlert.CetusCycle do
   def upcoming(state \\ WorldState.fetch()) do
     current(state)
     |> Stream.unfold(fn p -> {p, Period.next(p)} end)
+  end
+
+  def next_unseen_night(state \\ WorldState.fetch()) do
+    cutoff = Seen.cetus_cycle()
+
+    upcoming(state)
+    |> Enum.find(fn p ->
+      p.type == :night && Timex.after?(p.begins, cutoff)
+    end)
+  end
+
+  def mark_night_seen(%Period{type: night, ends: time}) do
+    Seen.update_cetus_cycle(time)
   end
 
   defp sync_bounty_reset_time(state) do
