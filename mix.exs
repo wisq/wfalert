@@ -25,6 +25,7 @@ defmodule WFAlert.MixProject do
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
       {:poison, "~> 3.1"},
       {:httpoison, "~> 1.0"},
+      {:timex, "~> 3.1"},
       {:warframe_worldstate_data,
        git: "https://github.com/WFCD/warframe-worldstate-data.git", compile: false, app: false}
     ]
