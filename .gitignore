@@ -23,4 +23,5 @@ erl_crash.dump
 wfalert-*.tar
 
 /priv/seen/
+/priv/cache/
 /config/pushover.exs
