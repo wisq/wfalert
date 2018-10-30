@@ -87,7 +87,7 @@ defmodule WFAlert.CetusCycle do
     end)
   end
 
-  def mark_night_seen(%Period{type: night, ends: time}) do
+  def mark_night_seen(%Period{type: :night, ends: time}) do
     Seen.update_cetus_cycle(time)
   end
 
