@@ -6,6 +6,7 @@ Accelerated Blast
 Armored Agility
 Blaze
 Constitution
+Focus Energy
 Fortitude
 Ice Storm
 Rending Strike
