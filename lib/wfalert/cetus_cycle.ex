@@ -23,8 +23,8 @@ defmodule WFAlert.CetusCycle do
     def next(%Period{type: :day, ends: time}), do: make(:night, starts: time)
     def next(%Period{type: :night, ends: time}), do: make(:day, starts: time)
 
-    def previous(%Period{type: :day, ends: time}), do: make(:night, ends: time)
-    def previous(%Period{type: :night, ends: time}), do: make(:day, ends: time)
+    def previous(%Period{type: :day, begins: time}), do: make(:night, ends: time)
+    def previous(%Period{type: :night, begins: time}), do: make(:day, ends: time)
 
     defp make(type, starts: time) do
       %Period{
