@@ -12,6 +12,10 @@ owned_weapon_skins =
   read_lines("lists/owned_weapon_skins.txt")
   |> Enum.map(&"#{&1} Skin Blueprint")
 
+owned_weapon_parts =
+  read_lines("lists/owned_weapons.txt")
+  |> Enum.map(&~r{^#{&1} [A-Z][a-z]+$})
+
 owned_nightmare_mods = read_lines("lists/owned_nightmare_mods.txt")
 owned_aura_mods = read_lines("lists/owned_aura_mods.txt")
 
@@ -28,6 +32,7 @@ unneeded_resources = %{
   "Nano Spores" => 3000,
   "Neural Sensors" => 1,
   "Neurodes" => 1,
+  "Nitain Extract" => 1,
   "Orokin Cell" => 1,
   "Oxium" => 300,
   "Plastids" => 300,
@@ -63,9 +68,11 @@ alert_filters([
 invasion_filters([
   # Three runs for one mutagen mass is awful, so two is ideal.
   # But, I have enough of these for a while.
-  #filter(:show, fn r -> r.name == "Mutagen Mass" && r.quantity >= 2 end),
+  # filter(:show, fn r -> r.name == "Mutagen Mass" && r.quantity >= 2 end),
   # Don't care much about fieldrons or detonites.
   by_category(:drop_item, :crafting_part),
+  # Ignore parts for weapons I own.
+  by_category_and_name(:drop_item, :weapon_part, owned_weapon_parts),
   # Let's show everything else.
   default(:show)
 ])

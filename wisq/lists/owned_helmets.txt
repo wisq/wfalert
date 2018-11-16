@@ -1,5 +1,6 @@
 # vim: ft=config
 Ash Locust
+Ash Scorpion
 Atlas Tartarus
 Banshee Chorus
 Banshee Reverb
@@ -9,23 +10,29 @@ Ember Backdraft
 Ember Phoenix
 Equinox Clisthert
 Equinox Solstice
+Excalibur Avalon
 Excalibur Mordred
 Excalibur Pendragon
 Excalibur Umbra Sunder
 Frost Aurora
 Frost Squall
 Gara Virago
+Harrow Suffragan
 Hydroid Ketos
 Hydroid Triton
 Inaros Canopic
 Ivara Loxley
 Ivara Zirastra
+Khora Delphi
 Limbo Magrite
 Loki Essence
 Mag Coil
+Mag Gauss
 Mesa Ovis
 Mirage Harlequin
 Mirage Trivelin
+Nekros Raknis
+Nekros Shroud
 Nezha Jinza
 Nidus Prion
 Nova Device
@@ -52,3 +59,4 @@ Volt Pulse
 Wukong Dasheng
 Wukong Macak
 Zephyr Cierzo
+Zephyr Tengu

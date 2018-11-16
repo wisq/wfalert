@@ -1,2 +1,6 @@
 # vim: ft=config
 Brokk Hammer
+Dual Zoren Dagger-Axe
+Fragor Brokk
+Dagger-Axe Scindo
+Scindo Manticore

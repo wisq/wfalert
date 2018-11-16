@@ -3,13 +3,17 @@
 # I generally get to 3 of each mod before I add them to this list.
 
 Accelerated Blast
+Animal Instinct
 Armored Agility
 Blaze
 Constitution
 Focus Energy
 Fortitude
+Hammer Shot
 Ice Storm
 Rending Strike
+Seeking Fury
+Shred
 Stunning Speed
-Wildfire
 Vigor
+Wildfire
