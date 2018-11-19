@@ -1,5 +1,5 @@
 defmodule WFAlert.Fissure do
-  alias WFAlert.{Fissure, FissureFilter, Nodes}
+  alias WFAlert.{Fissure, FissureFilter, Nodes, TimeUtils}
   import WFAlert.Util, only: [parse_time: 1]
   require Logger
 
@@ -55,7 +55,7 @@ defmodule WFAlert.Fissure do
   end
 
   def one_line(f) do
-    expiry = time_to_expire(f) |> seconds_to_string()
+    expiry = time_to_expire(f) |> TimeUtils.seconds_to_string()
     mission = f.mission_type |> show_mission_type()
     relic = f.relic_type |> show_relic_type()
     "#{relic} — #{f.node} (#{f.planet}) - #{mission} – #{expiry}"
@@ -65,17 +65,6 @@ defmodule WFAlert.Fissure do
 
   defp time_to_expire(fissure) do
     DateTime.diff(fissure.expires, DateTime.utc_now())
-  end
-
-  defp seconds_to_string(s) when abs(s) >= 3600 do
-    h = div(s, 3600)
-    m = abs(s) |> rem(3600) |> div(60)
-    "#{h}h#{m}m"
-  end
-
-  defp seconds_to_string(s) when abs(s) >= 60 do
-    m = div(s, 60)
-    "#{m}m"
   end
 
   @mission_types %{

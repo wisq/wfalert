@@ -1,5 +1,5 @@
 defmodule WFAlert.Alert do
-  alias WFAlert.{Alert, Reward, RewardFilter}
+  alias WFAlert.{Alert, Reward, RewardFilter, TimeUtils}
   import WFAlert.Util, only: [parse_time: 1]
 
   @enforce_keys [:id, :expires, :rewards]
@@ -45,7 +45,7 @@ defmodule WFAlert.Alert do
       |> Enum.sort()
       |> Enum.join(" + ")
 
-    expiry = time_to_expire(alert) |> seconds_to_string()
+    expiry = time_to_expire(alert) |> TimeUtils.seconds_to_string()
     "#{rewards} – #{expiry}"
   end
 
@@ -53,16 +53,5 @@ defmodule WFAlert.Alert do
 
   defp time_to_expire(alert) do
     DateTime.diff(alert.expires, DateTime.utc_now())
-  end
-
-  defp seconds_to_string(s) when abs(s) >= 3600 do
-    h = div(s, 3600)
-    m = abs(s) |> rem(3600) |> div(60)
-    "#{h}h#{m}m"
-  end
-
-  defp seconds_to_string(s) when abs(s) >= 60 do
-    m = div(s, 60)
-    "#{m}m"
   end
 end
