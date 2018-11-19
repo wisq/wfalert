@@ -80,6 +80,19 @@ invasion_filters([
 ])
 
 F.fissure_filters([
+  # I need Cryotic, so show Excavation missions.
   F.by_mission_type(:show, :excavation),
+
+  # Maybe I need Argon, too:
+  # F.by_planet(:show, "Void"),
+
+  # Maybe I just really like a particular node?
+  # I dunno why you'd do this, but okay.
+  # F.by_node(:show, "Mithra"),
+
+  # You can limit any of the above filters to a given relic type, too:
+  # F.by_planet(:show, "Void") |> F.with_relic(:axi),
+
+  # Hide everything else.
   F.default(:hide)
 ])

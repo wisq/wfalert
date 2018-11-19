@@ -1,5 +1,6 @@
 defmodule WFAlert.Helpers.FissureFilter do
   alias WFAlert.FissureFilter
+  import WFAlert.Helpers.Common
 
   def fissure_filters(list) when is_list(list) do
     Application.put_env(:wfalert, :fissure_filters, list)
@@ -15,12 +16,22 @@ defmodule WFAlert.Helpers.FissureFilter do
     %FissureFilter{action: action, condition: fun}
   end
 
-  def by_mission_type(action, types) when is_list(types) do
-    filter(action, fn f -> f.mission_type in types end)
+  def by_mission_type(action, type) do
+    filter(action, fn f -> matches(f.mission_type, type) end)
   end
 
-  def by_mission_type(action, type) when is_atom(type) do
-    by_mission_type(action, [type])
+  def by_planet(action, name) do
+    filter(action, fn f -> matches(f.planet, name) end)
+  end
+
+  def by_node(action, name) do
+    filter(action, fn f -> matches(f.node, name) end)
+  end
+
+  def with_relic(%FissureFilter{} = ff, relic) do
+    filter(ff.action, fn f ->
+      ff.condition.(f) && matches(f.relic_type, relic)
+    end)
   end
 
   def default(action) do

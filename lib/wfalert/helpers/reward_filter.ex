@@ -1,5 +1,6 @@
 defmodule WFAlert.Helpers.RewardFilter do
   alias WFAlert.RewardFilter
+  import WFAlert.Helpers.Common
 
   def alert_filters(list) when is_list(list) do
     Application.put_env(:wfalert, :alert_filters, list)
@@ -39,15 +40,5 @@ defmodule WFAlert.Helpers.RewardFilter do
 
   def default(action) do
     filter(action, fn _ -> true end)
-  end
-
-  defp matches(actual, expected) do
-    cond do
-      Regex.regex?(expected) -> actual =~ expected
-      is_binary(expected) -> String.downcase(actual) == String.downcase(expected)
-      is_atom(expected) -> actual == expected
-      is_list(expected) -> Enum.any?(expected, &matches(actual, &1))
-      true -> raise "Unknown match value: #{inspect(expected)}"
-    end
   end
 end
