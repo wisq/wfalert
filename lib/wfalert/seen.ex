@@ -3,10 +3,12 @@ defmodule WFAlert.Seen do
 
   def alerts, do: list("alerts")
   def invasions, do: list("invasions")
+  def fissures, do: list("fissures")
   def cetus_cycle, do: time("cetus_cycle")
 
   def update_alerts(alerts), do: update_ids("alerts", alerts)
   def update_invasions(invasions), do: update_ids("invasions", invasions)
+  def update_fissures(fissures), do: update_ids("fissures", fissures)
   def update_cetus_cycle(time), do: update_time("cetus_cycle", time)
 
   defp seen_file(type) do

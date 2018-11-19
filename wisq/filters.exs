@@ -1,4 +1,6 @@
-use WFAlert.Filter.Helpers
+import WFAlert.Helpers.RewardFilter
+alias WFAlert.Helpers.FissureFilter, as: F
+import WFAlert.Helpers.Utility
 
 owned_helmets =
   read_lines("lists/owned_helmets.txt")
@@ -75,4 +77,9 @@ invasion_filters([
   by_category_and_name(:drop_item, :weapon_part, owned_weapon_parts),
   # Let's show everything else.
   default(:show)
+])
+
+F.fissure_filters([
+  F.by_mission_type(:show, :excavation),
+  F.default(:hide)
 ])

@@ -1,5 +1,5 @@
 defmodule WFAlert.Invasion do
-  alias WFAlert.{Invasion, Reward, Filter}
+  alias WFAlert.{Invasion, Reward, RewardFilter}
 
   @enforce_keys [:id, :rewards]
   defstruct(
@@ -18,7 +18,7 @@ defmodule WFAlert.Invasion do
   end
 
   def match?(invasion) do
-    Filter.match?(
+    RewardFilter.match?(
       Application.get_env(:wfalert, :invasion_filters, []),
       invasion.rewards
     )

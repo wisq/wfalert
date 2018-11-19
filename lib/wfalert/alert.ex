@@ -1,5 +1,5 @@
 defmodule WFAlert.Alert do
-  alias WFAlert.{Alert, Reward, Filter}
+  alias WFAlert.{Alert, Reward, RewardFilter}
   import WFAlert.Util, only: [parse_time: 1]
 
   @enforce_keys [:id, :expires, :rewards]
@@ -24,7 +24,7 @@ defmodule WFAlert.Alert do
   end
 
   def match?(alert) do
-    Filter.match?(
+    RewardFilter.match?(
       Application.get_env(:wfalert, :alert_filters, []),
       alert.rewards
     )

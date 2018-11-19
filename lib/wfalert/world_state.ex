@@ -1,6 +1,6 @@
 defmodule WFAlert.WorldState do
   require Logger
-  alias WFAlert.{Alert, Invasion, Seen}
+  alias WFAlert.{Alert, Invasion, Fissure, Seen}
   alias WFAlert.WorldState.Cache
 
   @uri "http://content.warframe.com/dynamic/worldState.php"
@@ -35,6 +35,14 @@ defmodule WFAlert.WorldState do
     |> log("invasion")
   end
 
+  def fissures(state \\ fetch()) do
+    state
+    |> Map.fetch!("ActiveMissions")
+    |> Enum.map(&Fissure.parse/1)
+    |> Fissure.sort()
+    |> log("fissure")
+  end
+
   def new_alerts(state \\ fetch()) do
     seen = Seen.alerts()
 
@@ -51,6 +59,15 @@ defmodule WFAlert.WorldState do
     |> Seen.update_invasions()
     |> Enum.reject(&(&1.id in seen))
     |> log("unseen invasion")
+  end
+
+  def new_fissures(state \\ fetch()) do
+    seen = Seen.fissures()
+
+    fissures(state)
+    |> Seen.update_fissures()
+    |> Enum.reject(&(&1.id in seen))
+    |> log("unseen fissure")
   end
 
   defp log(items, type) do

@@ -1,11 +1,5 @@
-defmodule WFAlert.Filter.Helpers do
-  alias WFAlert.Filter
-
-  defmacro __using__(_opts) do
-    quote do
-      import WFAlert.Filter.Helpers
-    end
-  end
+defmodule WFAlert.Helpers.RewardFilter do
+  alias WFAlert.RewardFilter
 
   def alert_filters(list) when is_list(list) do
     Application.put_env(:wfalert, :alert_filters, list)
@@ -22,7 +16,7 @@ defmodule WFAlert.Filter.Helpers do
       raise "Invalid action: #{inspect(action)}"
     end
 
-    %Filter{action: action, condition: fun}
+    %RewardFilter{action: action, condition: fun}
   end
 
   def by_category(action, category) do
@@ -45,15 +39,6 @@ defmodule WFAlert.Filter.Helpers do
 
   def default(action) do
     filter(action, fn _ -> true end)
-  end
-
-  defmacro read_lines(file) do
-    quote bind_quoted: [file: file] do
-      Path.expand(file, Path.dirname(__ENV__.file))
-      |> File.stream!()
-      |> Enum.map(&:string.chomp/1)
-      |> Enum.filter(&(&1 =~ ~r{^[^#]}))
-    end
   end
 
   defp matches(actual, expected) do

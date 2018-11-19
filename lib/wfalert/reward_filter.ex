@@ -1,4 +1,4 @@
-defmodule WFAlert.Filter do
+defmodule WFAlert.RewardFilter do
   @enforce_keys [:action, :condition]
   defstruct(
     action: nil,
