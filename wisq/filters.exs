@@ -74,14 +74,16 @@ invasion_filters([
   # Don't care much about fieldrons or detonites.
   by_category(:drop_item, :crafting_part),
   # Ignore parts for weapons I own.
-  by_category_and_name(:drop_item, :weapon_part, owned_weapon_parts),
+  by_category_and_name(:drop_item, [:weapon_part, :weapon_blueprint], owned_weapon_parts),
+  # Ignore Alad V coordinates:
+  by_id(:drop_item, "/Lotus/Types/Items/MiscItems/InfestedAladCoordinate"),
   # Let's show everything else.
   default(:show)
 ])
 
 F.fissure_filters([
-  # I need Cryotic, so show Excavation missions.
-  F.by_mission_type(:show, :excavation),
+  # I needed cryotic for a while, but that's done.
+  # F.by_mission_type(:show, :excavation),
 
   # Maybe I need Argon, too:
   # F.by_planet(:show, "Void"),

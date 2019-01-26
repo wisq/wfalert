@@ -6,11 +6,13 @@ Accelerated Blast
 Animal Instinct
 Armored Agility
 Blaze
+#Chilling Reload
 Constitution
 Focus Energy
 Fortitude
 Hammer Shot
 Ice Storm
+Lethal Torrent
 Rending Strike
 Seeking Fury
 Shred
