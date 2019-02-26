@@ -6,12 +6,12 @@ defmodule WFAlert.Util do
   def string_to_datetime(str) do
     str
     |> String.to_integer()
-    |> DateTime.from_unix!(:milliseconds)
+    |> DateTime.from_unix!(:millisecond)
   end
 
   def datetime_to_string(time) do
     time
-    |> DateTime.to_unix(:milliseconds)
+    |> DateTime.to_unix(:millisecond)
     |> Integer.to_string()
   end
 
